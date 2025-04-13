@@ -1,168 +1,182 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
+.container {
+  position: relative;
+  background-image: url('/assets/space_bg.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-}
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
-}
-
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
   align-items: center;
-  gap: 8px;
+  text-align: center;
 }
 
-.footer img {
-  flex-shrink: 0;
+/* Removed stars background */
+
+.heading {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  text-transform: uppercase;
+  color: #fdfdfd;
+  z-index: 1;
+  position: relative;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.nheading {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #3450f0;
+  z-index: 1;
+  font-weight: 400;
+  padding-top: 2%;
+  position: relative;
+}
+
+.subheading {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-weight: 200;
+  color: #000000;
+  z-index: 1;
+  position: relative;
+}
+
+.name {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-weight: 300;
+  margin-top: 2px;
+  color: #000000;
+  z-index: 1;
+  position: relative;
+}
+
+.earthSection {
+  position: absolute;
+  top: 56%;
+  right: 46%;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.astronaut {
+  width: 100px;
+  max-width: 25vw;
+  height: auto;
+}
+
+.textBlock {
+  position: absolute;
+  top: 10%;
+  padding: 0 5vw;
+  width: 100%;
+  text-align: center;
+}
+
+.cta {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #8a2be2;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.socials {
+  position: fixed;
+  top: 50%;
+  left: 3%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  z-index: 2;
+}
+
+.socials a {
+  display: block;
+}
+
+.socials img {
+  width: 30px;
+  height: 30px;
+}
+
+.contact {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  z-index: 1;
+  font-size: larger;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+/* --- Responsive Media Queries --- */
+
+@media screen and (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .subheading,
+  .name {
+    font-size: 0.9rem;
   }
 
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .astronaut {
+    width: 80px;
+  }
+
+  .contact {
+    top: 1rem;
+    right: 1rem;
+    font-size: medium;
+  }
+
+  .scroll {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+@media screen and (max-width: 480px) {
+  .heading {
+    font-size: 1.6rem;
   }
 
-  .main {
-    align-items: center;
+  .subheading,
+  .name {
+    font-size: 0.8rem;
   }
 
-  .main ol {
-    text-align: center;
+  .earthSection {
+    top: 70%;
+    right: 10%;
   }
 
-  .ctas {
-    flex-direction: column;
+  .socials {
+    left: 1%;
+    gap: 2vh;
   }
 
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+  .astronaut {
+    width: 60px;
   }
 
-  a.secondary {
-    min-width: auto;
+  .contact {
+    font-size: small;
   }
 
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .scroll {
+    font-size: 0.8rem;
   }
 }
