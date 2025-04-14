@@ -266,3 +266,74 @@
     opacity: 1;
   }
 }
+
+/* page.module.css */
+
+/* The container that will allow horizontal scrolling */
+.scrollContainer {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background: #000;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  scroll-snap-type: x mandatory; /* Optional: adds a snapping effect */
+}
+
+/* The content inside the container */
+.scrollContent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 200vw; /* Make it wider than the screen for horizontal scroll */
+  position: relative;
+}
+
+/* Content that starts on the left */
+.leftContent {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  color: white;
+  font-size: 2rem;
+  transform: translateY(-50%);
+  transition: transform 0.1s ease-out;
+}
+
+/* Content that starts on the right */
+.rightContent {
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  color: white;
+  font-size: 2rem;
+  transform: translateY(-50%);
+  transition: transform 0.1s ease-out;
+}
+
+/* The rocket image */
+.rocket {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  transition: transform 0.1s ease-out;
+  width: 150px;
+}
+
+/* Optional: Add some styling for smooth scrolling */
+.scrollContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
