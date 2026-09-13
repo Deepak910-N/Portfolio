@@ -1,21 +1,16 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #020814;
+  --foreground: #ededed;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  color-scheme: dark;
 }
-h1, h2, h3, h4, h5, h6 ,a{
+
+h1, h2, h3, h4, h5, h6, a {
   font-family: var(--font-bebas-neue), sans-serif;
   letter-spacing: 1px;
 }
@@ -26,6 +21,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url('/assets/rocket.png') 3 4, auto;
 }
 
 * {
@@ -39,8 +35,10 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+button, a, img {
+  cursor: none;
+}
+
+button:hover, a:hover, img:hover {
+  cursor: url('/assets/rocket.png') 3 4, auto;
 }

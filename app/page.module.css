@@ -1,54 +1,76 @@
 /* page.module.css */
 
-/* Add global styles using :global to apply cursor changes globally */
-:global(body) {
-  cursor: url('/assets/rocket.png') 3 4, auto;
-}
-
-:global(button),
-:global(a),
-:global(img) {
-  cursor: none; /* Prevent default cursor when hovering over buttons, links, and images */
-}
-
-/* Apply rocket cursor on hover for specific elements */
-:global(button:hover),
-:global(a:hover),
-:global(img:hover) {
-  cursor: url('/assets/rocket.png') 3 4, auto; /* Apply rocket cursor on hover */
-}
-
 .clickImage,
 .contact {
-  cursor: url('/assets/rocket.png') 3 4, auto !important; /* Force rocket cursor on these elements */
+  cursor: url('/assets/rocket.png') 3 4, auto !important;
 }
 
 .container {
   position: relative;
   background-image: url('/assets/space_bg.png');
   background-size: cover;
-  background-position: center;
+  background-position: center bottom;
+  background-color: #020814;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  filter: brightness(1.1);
+  overflow: hidden;
 }
 
-/* Other existing styles... */
+/* ── Top Nav ──────────────────────────────────── */
+
+.topNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  backdrop-filter: blur(12px);
+  background: rgba(2, 8, 20, 0.55);
+  border-bottom: 1px solid rgba(100, 160, 255, 0.1);
+}
+
+.navBrand {
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.navCoords {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: #4a7aaa;
+  opacity: 0.8;
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .navCoords { display: block; }
+}
+
+/* ── Headings ─────────────────────────────────── */
 
 .heading {
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
   text-transform: uppercase;
   color: #fdfdfd;
   z-index: 1;
   position: relative;
+  text-shadow: 0 0 40px rgba(100, 160, 255, 0.3);
 }
 
 .nheading {
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   color: #3450f0;
   z-index: 1;
   font-weight: 400;
@@ -57,34 +79,50 @@
 }
 
 .subheading {
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-  font-weight: 200;
-  color: #000000;
-  z-index: 1;
-  position: relative;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  letter-spacing: 5px;
+  color: #88bbee;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(100, 160, 255, 0.5);
 }
 
 .name {
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-  font-weight: 300;
-  margin-top: 2px;
-  color: #000000;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  letter-spacing: 5px;
+  color: #88bbee;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+  margin-bottom: 1.6rem;
+  text-shadow: 0 0 20px rgba(100, 160, 255, 0.5);
   z-index: 1;
   position: relative;
 }
 
+/* ── Astronaut / Earth section ──────────────────── */
+
 .earthSection {
-  position: absolute;
-  top: 56%;
-  right: 46%;
-  z-index: 1;
-  transform: translateY(-50%);
+  position: fixed;
+  bottom: 38vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: floatIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.5s;
 }
 
 .astronaut {
-  width: 100px;
-  max-width: 25vw;
+  width: 120px;
+  max-width: 20vw;
   height: auto;
+  animation: idleFloat 4s ease-in-out infinite;
+  /* Rotate slightly to follow the curve of the earth */
+  transform-origin: bottom center;
+}
+
+@keyframes idleFloat {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%       { transform: translateY(-12px) rotate(2deg); }
 }
 
 .textBlock {
@@ -93,18 +131,11 @@
   padding: 0 5vw;
   width: 100%;
   text-align: center;
+  animation: fadeSlideDown 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  z-index: 2;
 }
 
-.cta {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: #8a2be2;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: bold;
-}
+/* ── Socials ──────────────────────────────────── */
 
 .socials {
   position: fixed;
@@ -117,223 +148,193 @@
   z-index: 2;
 }
 
-.socials a {
-  display: block;
-}
+.socials a { display: block; }
 
 .socials img {
   width: 30px;
   height: 30px;
-  filter: brightness(0.2);
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.socials a:hover img {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ── Contact link (legacy, now in nav) ────────── */
+
 .contact {
-  position: absolute;
-  top: 2rem;
-  right: 3rem;
+  font-family: var(--font-bebas-neue), sans-serif;
   font-weight: bold;
   text-decoration: none;
   color: white;
   z-index: 1;
-  font-size: larger;
-  cursor: url('/assets/rocket.png') 9 10, auto; /* Ensure rocket cursor for contact link */
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  cursor: url('/assets/rocket.png') 9 10, auto;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, letter-spacing 0.3s ease;
 }
 
-.scroll {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  font-size: 1rem;
+.contact:hover {
+  opacity: 1;
+  letter-spacing: 3px;
+}
+
+/* ── CSS Planet ───────────────────────────────── */
+
+.planet {
+  position: fixed;
+  bottom: -80px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #4a7fc1 0%, #0d1f42 50%, #030a1a 100%);
+  box-shadow:
+    inset -30px -15px 60px rgba(0, 0, 0, 0.7),
+    0 0 80px rgba(58, 110, 232, 0.15),
+    0 0 160px rgba(30, 60, 160, 0.08);
+  animation: slowSpin 80s linear infinite;
   z-index: 1;
+  pointer-events: none;
 }
 
-/* --- Responsive Media Queries --- */
-
-@media screen and (max-width: 768px) {
-  .heading {
-    font-size: 2rem;
-  }
-
-  .subheading,
-  .name {
-    font-size: 0.9rem;
-  }
-
-  .astronaut {
-    width: 80px;
-  }
-
-  .contact {
-    top: 1rem;
-    right: 1rem;
-    font-size: medium;
-  }
-
-  .scroll {
-    bottom: 0.5rem;
-    right: 0.5rem;
-    font-size: 0.9rem;
-  }
+.planet::before {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  border: 2px solid rgba(100, 150, 220, 0.2);
+  transform: rotateX(70deg);
+  box-shadow: 0 0 20px rgba(100, 150, 220, 0.1);
 }
 
-@media screen and (max-width: 480px) {
-  .heading {
-    font-size: 1.6rem;
-  }
-
-  .subheading,
-  .name {
-    font-size: 0.8rem;
-  }
-
-  .earthSection {
-    top: 70%;
-    right: 10%;
-  }
-
-  .socials {
-    left: 1%;
-    gap: 2vh;
-  }
-
-  .astronaut {
-    width: 60px;
-  }
-
-  .contact {
-    font-size: small;
-  }
-
-  .scroll {
-    font-size: 0.8rem;
-  }
+@keyframes slowSpin {
+  to { transform: rotate(360deg); }
 }
+
+/* ── Click image ──────────────────────────────── */
 
 .clickImage {
   cursor: pointer;
   width: 120px;
   margin-top: 20px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  animation: fadeSlideDown 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.3s;
+  position: relative;
+  z-index: 2;
 }
 
 .clickImage:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 12px rgba(100, 160, 255, 0.7));
 }
 
-/* Add animation class */
+/* ── Astronaut zoom-out ───────────────────────── */
+
 .animateAstronaut {
-  animation: astronautZoomOut 1.5s ease-in-out forwards;
+  animation: astronautZoomOut 1.5s cubic-bezier(0.4, 0, 1, 1) forwards;
   z-index: 1000;
-  position: absolute;
-  top: 54%;
-  left: 49%;
-  transform: translate(-50%, -50%);
+  position: fixed;
+  bottom: 38vh;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
+.animateAstronaut .astronaut { animation: none; }
 
 @keyframes astronautZoomOut {
-  0% {
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(3) rotate(90deg); /* Scale up smoothly and rotate more gradually */
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(9) rotate(340deg); /* Slightly larger scale with full rotation */
-    opacity: 0; /* Fade out for a smooth finish */
-  }
+  0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg);    opacity: 1; }
+  40%  { transform: translate(-50%, -50%) scale(2.5) rotate(152deg); opacity: 0.9; }
+  80%  { transform: translate(-50%, -50%) scale(7) rotate(304deg);   opacity: 0.3; }
+  100% { transform: translate(-50%, -50%) scale(12) rotate(380deg);  opacity: 0; }
 }
 
+/* ── Keyframes ────────────────────────────────── */
 
-.overlay {
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.85); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* ── Home footer ──────────────────────────────── */
+
+.homeFooter {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-image: url('/assets/nicebg.png'); /* 💡 Replace with your image path */
-  background-size:contain;
-  background-position: center;
-  z-index: 999;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 1.6rem;
+}
+
+.homeFooter a {
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: #3a5570;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.homeFooter a:hover {
+  color: #6496c8;
+}
+
+/* ── Enter hint ───────────────────────────────── */
+
+.enterHint {
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: #6496c8;
+  opacity: 0.7;
+  margin-top: 0.8rem;
+  position: relative;
+  z-index: 2;
+  animation: hintPulse 2.5s ease-in-out infinite, fadeSlideDown 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0s, 1.2s;
+  transition: opacity 0.4s ease;
+}
+
+.enterHintHidden {
   opacity: 0;
-  animation: fadeIn 1.5s forwards;
   pointer-events: none;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50%       { opacity: 0.9; transform: translateY(4px); }
 }
 
-/* page.module.css */
+/* ── Responsive ───────────────────────────────── */
 
-/* The container that will allow horizontal scrolling */
-.scrollContainer {
-  width: 100vw;
-  height: 100vh;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  background: #000;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  scroll-snap-type: x mandatory; /* Optional: adds a snapping effect */
+@media screen and (max-width: 768px) {
+  .heading { font-size: 2.2rem; }
+  .subheading, .name { font-size: 0.85rem; }
+  .astronaut { width: 90px; }
+  .topNav { padding: 1rem 1.4rem; }
+  .planet { width: 180px; height: 180px; bottom: -60px; right: -60px; }
 }
 
-/* The content inside the container */
-.scrollContent {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 200vw; /* Make it wider than the screen for horizontal scroll */
-  position: relative;
+@media screen and (max-width: 480px) {
+  .heading { font-size: 1.7rem; }
+  .subheading, .name { font-size: 0.78rem; }
+  .socials { left: 1%; gap: 2vh; }
+  .astronaut { width: 70px; }
+  .planet { width: 130px; height: 130px; bottom: -40px; right: -40px; }
 }
 
-/* Content that starts on the left */
-.leftContent {
-  position: absolute;
-  left: 10%;
-  top: 50%;
-  color: white;
-  font-size: 2rem;
-  transform: translateY(-50%);
-  transition: transform 0.1s ease-out;
-}
-
-/* Content that starts on the right */
-.rightContent {
-  position: absolute;
-  left: 110%;
-  top: 50%;
-  color: white;
-  font-size: 2rem;
-  transform: translateY(-50%);
-  transition: transform 0.1s ease-out;
-}
-
-/* The rocket image */
-.rocket {
-  position: absolute;
-  bottom: 10%;
-  left: 0;
-  transition: transform 0.1s ease-out;
-  width: 150px;
-}
-
-/* Optional: Add some styling for smooth scrolling */
-.scrollContainer::-webkit-scrollbar {
-  height: 8px;
-}
-
-.scrollContainer::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
-}
-
-.scrollContainer::-webkit-scrollbar-track {
-  background: transparent;
+@media screen and (max-width: 600px) {
+  .navCoords { display: none !important; }
 }

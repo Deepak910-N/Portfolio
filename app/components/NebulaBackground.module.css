@@ -1,0 +1,70 @@
+.nebula {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.blob1 {
+  width: 700px;
+  height: 700px;
+  top: -15%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(80, 0, 140, 0.22) 0%, transparent 70%);
+  animation: drift1 38s ease-in-out infinite alternate;
+}
+
+.blob2 {
+  width: 600px;
+  height: 600px;
+  top: 40%;
+  right: -12%;
+  background: radial-gradient(circle, rgba(0, 50, 130, 0.3) 0%, transparent 70%);
+  animation: drift2 45s ease-in-out infinite alternate;
+}
+
+.blob3 {
+  width: 500px;
+  height: 500px;
+  bottom: -10%;
+  left: 20%;
+  background: radial-gradient(circle, rgba(0, 80, 120, 0.2) 0%, transparent 70%);
+  animation: drift3 32s ease-in-out infinite alternate;
+}
+
+.blob4 {
+  width: 400px;
+  height: 400px;
+  top: 20%;
+  left: 45%;
+  background: radial-gradient(circle, rgba(60, 0, 100, 0.15) 0%, transparent 70%);
+  animation: drift4 55s ease-in-out infinite alternate;
+}
+
+@keyframes drift1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(80px, 60px) scale(1.12); }
+}
+
+@keyframes drift2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-70px, -50px) scale(1.08); }
+}
+
+@keyframes drift3 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(50px, -80px) scale(1.15); }
+}
+
+@keyframes drift4 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-60px, 70px) scale(0.9); }
+}
