@@ -2,12 +2,12 @@
 
 .clickImage,
 .contact {
-  cursor: url('/assets/rocket.png') 3 4, auto !important;
+  cursor: url('/Portfolio/assets/rocket.png') 3 4, auto !important;
 }
 
 .container {
   position: relative;
-  background-image: url('/assets/space_bg.png');
+  background-image: url('/Portfolio/assets/space_bg.png');
   background-size: cover;
   background-position: center bottom;
   background-color: #020814;
@@ -173,7 +173,7 @@
   z-index: 1;
   font-size: 1.1rem;
   letter-spacing: 2px;
-  cursor: url('/assets/rocket.png') 9 10, auto;
+  cursor: url('/Portfolio/assets/rocket.png') 9 10, auto;
   opacity: 0.85;
   transition: opacity 0.3s ease, letter-spacing 0.3s ease;
 }

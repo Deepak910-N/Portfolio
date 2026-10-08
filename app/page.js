@@ -7,6 +7,8 @@ import ParallaxStarfield from './components/ParallaxStarfield';
 import NebulaBackground from './components/NebulaBackground';
 import { useWarpTransition } from './components/WarpTransition';
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 export default function Home() {
   const triggerWarp = useWarpTransition();
   const [animate, setAnimate] = useState(false);
@@ -59,7 +61,7 @@ export default function Home() {
           <p className={styles.name}>SPECIES: HOMO SAPIENS</p>
 
           <img
-            src="/assets/clickme.png"
+            src={`${BASE}/assets/clickme.png`}
             alt="Click Me"
             className={styles.clickImage}
             onClick={handleClick}
@@ -70,13 +72,13 @@ export default function Home() {
         </div>
 
         <div className={`${styles.earthSection} ${animate ? styles.animateAstronaut : ''}`}>
-          <img src="/assets/astronaut1.png" alt="Astronaut" className={styles.astronaut} />
+          <img src={`${BASE}/assets/astronaut1.png`} alt="Astronaut" className={styles.astronaut} />
         </div>
 
         <div className={styles.socials}>
-          <a href="https://github.com/Deepak910-N" target="_blank" rel="noopener noreferrer"><img src="/assets/github.png" alt="GitHub" /></a>
-          <a href="https://www.instagram.com/_deepak_n23_?igsi=MXRubjJqcHc5NWRlMw==" target="_blank" rel="noopener noreferrer"><img src="/assets/instagram.png" alt="Instagram" /></a>
-          <a href="https://www.linkedin.com/in/deepak-n-b546b4300/" target="_blank" rel="noopener noreferrer"><img src="/assets/linkedin.png" alt="LinkedIn" /></a>
+          <a href="https://github.com/Deepak910-N" target="_blank" rel="noopener noreferrer"><img src={`${BASE}/assets/github.png`} alt="GitHub" /></a>
+          <a href="https://www.instagram.com/_deepak_n23_?igsi=MXRubjJqcHc5NWRlMw==" target="_blank" rel="noopener noreferrer"><img src={`${BASE}/assets/instagram.png`} alt="Instagram" /></a>
+          <a href="https://www.linkedin.com/in/deepak-n-b546b4300/" target="_blank" rel="noopener noreferrer"><img src={`${BASE}/assets/linkedin.png`} alt="LinkedIn" /></a>
         </div>
 
         <div className={styles.planet} aria-hidden="true" />

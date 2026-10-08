@@ -21,7 +21,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url('/assets/rocket.png') 3 4, auto;
+  cursor: url('/Portfolio/assets/rocket.png') 3 4, auto;
 }
 
 * {
@@ -40,5 +40,5 @@ button, a, img {
 }
 
 button:hover, a:hover, img:hover {
-  cursor: url('/assets/rocket.png') 3 4, auto;
+  cursor: url('/Portfolio/assets/rocket.png') 3 4, auto;
 }
